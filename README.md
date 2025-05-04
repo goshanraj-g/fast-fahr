@@ -117,29 +117,6 @@ Follow these instructions to get a local copy up and running for development or 
     *   Start **Apache** and **MySQL** in the XAMPP Control Panel.
     *   Navigate to `http://localhost/fastfahr/` in your browser.
 
-## 📂 Project Structure (Simplified)
-
-fastfahr/ (Project Root)
-├── backend/
-│ ├── app/
-│ │ ├── controllers/
-│ │ └── models/
-│ ├── apis/
-│ ├── config/
-│ ├── vendor/
-│ └── .env
-├── frontend/
-│ ├── public/ (Favicon, manifest.json, index.html template)
-│ ├── src/ (React source code - components, pages, hooks, etc.)
-│ ├── build/ (Output of 'npm run build' - CONTENT copied to htdocs)
-│ └── .env
-├── uploads/ (User uploaded files - Needs write permission)
-│ └── profile_pictures/
-├── .gitignore
-├── composer.json
-├── package.json
-└── README.md (This file)
-
 ## 🔮 Future Improvements
 
 *   **🚀 Real-time Messaging:** Revamp messages system to use WebSockets (ideally via Ratchet) instead of polling for instant message delivery.
