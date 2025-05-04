@@ -101,11 +101,11 @@ abstract class BaseController
     }
 
     /**
-     * Sends a standard error JSON response.
-     * @param string $message
-     * @param int $statusCode
-     * @param mixed|null $details Optional details (use with caution in production)
-     */
+    * Sends a standard error JSON response.
+    * @param string $message
+    * @param int $statusCode
+    * @param mixed|null $details Optional details (use with caution in production)
+    */
     protected function errorResponse(string $message, int $statusCode = 400, $details = null): void
     {
         $response = ['success' => false, 'error' => $message];

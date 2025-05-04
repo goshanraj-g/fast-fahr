@@ -9,8 +9,8 @@ class BookmarksController extends BaseController
     private BookmarkModel $bookmarkModel;
 
     /**
-     * @param PDO $dbConnection
-     */
+    * @param PDO $dbConnection
+    */
     public function __construct(PDO $dbConnection)
     {
         parent::__construct($dbConnection);
@@ -18,8 +18,8 @@ class BookmarksController extends BaseController
     }
 
     /**
-     * Handles GET request to list user's bookmarks.
-     */
+    * Handles GET request to list user's bookmarks.
+    */
     public function listUserBookmarks(): void
     {
         $userId = $this->getUserId();
@@ -28,8 +28,8 @@ class BookmarksController extends BaseController
     }
 
     /**
-     * Handles POST request to add a bookmark.
-     */
+    * Handles POST request to add a bookmark.
+    */
     public function addBookmark(): void
     {
         $postId = filter_input(INPUT_POST, 'post_id', FILTER_VALIDATE_INT);
@@ -44,8 +44,8 @@ class BookmarksController extends BaseController
     }
 
     /**
-     * Handles POST request to remove a bookmark.
-     */
+    * Handles POST request to remove a bookmark.
+    */
     public function removeBookmark(): void
     {
         $postId = filter_input(INPUT_POST, 'post_id', FILTER_VALIDATE_INT);

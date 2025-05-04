@@ -23,8 +23,14 @@ import AccountPage from "./pages/AccountPage";
 */
 function AppContent() {
   const location = useLocation();
-  const noLayoutRoutes = ["/login", "/register", "/forgot-password", "verify-code", "reset-password"];
-  const hideLayout = noLayoutRoutes.includes(location.pathname);
+
+  const noLayoutRoutes = [
+    "/login", "/register", "/forgot-password", "/verify-code", "/reset-password"];
+
+  const currentPathname = location.pathname;
+  const normalizedPathname = currentPathname.length > 1 && currentPathname.endsWith('/') ? currentPathname.slice(0, -1) : currentPathname;
+
+  const hideLayout = noLayoutRoutes.includes(normalizedPathname);
 
   return (
     <>

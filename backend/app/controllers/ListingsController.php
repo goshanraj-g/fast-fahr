@@ -259,21 +259,21 @@ class ListingsController extends BaseController
           }
       }
 
-     /**
-      * Handles POST request to add images to an existing listing. (Requires Auth)
-      */
-     public function addImages(): void
-     {
-         $userId = $this->getUserId();
+    /**
+    * Handles POST request to add images to an existing listing. (Requires Auth)
+    */
+    public function addImages(): void
+    {
+        $userId = $this->getUserId();
 
-         $listingId = filter_input(INPUT_POST, 'listing_id', FILTER_VALIDATE_INT);
-         $files = $_FILES;
+        $listingId = filter_input(INPUT_POST, 'listing_id', FILTER_VALIDATE_INT);
+        $files = $_FILES;
           if (!$listingId || $listingId <= 0) $this->errorResponse('Missing or invalid listing ID.', 400);
           if (empty($files['photos']) || !is_array($files['photos']['name']) || empty($files['photos']['name'][0])) {
                $this->errorResponse("Missing 'photos' or no files uploaded.", 400);
           }
 
-          $listing = $this->listingModel->getListingById($listingId);
+        $listing = $this->listingModel->getListingById($listingId);
           if (!$listing) $this->errorResponse('Listing not found.', 404);
           if ($listing['user_id'] != $userId) $this->errorResponse('Permission denied.', 403);
 
@@ -294,11 +294,11 @@ class ListingsController extends BaseController
      }
 
     /**
-     * @param array $files $_FILES array
-     * @param int $listingId
-     * @return array Paths of successfully uploaded files relative to web root
-     * @throws \Exception On critical directory or file move errors
-     */
+    * @param array $files $_FILES array
+    * @param int $listingId
+    * @return array Paths of successfully uploaded files relative to web root
+    * @throws \Exception On critical directory or file move errors
+    */
     private function handleImageUploads(array $files, int $listingId): array
     {
         $uploadedPaths = [];

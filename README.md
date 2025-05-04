@@ -18,7 +18,7 @@ FastFahr is a dynamic web application designed as a niche marketplace specifical
 
 Check out a brief video walkthrough of FastFahr's features and user interface:
 
-[![FastFahr Demo Video](https://img.youtube.com/vi/YOUR_VIDEO_ID_HERE/0.jpg)](https://www.youtube.com/watch?v=YOUR_VIDEO_ID_HERE)
+[![FastFahr Demo Video]](https://youtu.be/W8mkPZq8NsY)
 
 
 ## ✨ Key Features
@@ -89,7 +89,7 @@ This section explains the technical architecture and workflow of the FastFahr ap
 *   **Request Handling:** Apache (via XAMPP) routes requests matching `/fastfahr/backend/apis/...` to the corresponding PHP scripts.
 *   **Dependencies:** Composer manages backend libraries like PHPMailer (for sending emails) and phpdotenv (for environment variables).
 *   **Configuration:** Database credentials, mailer settings, CORS origin, etc., are stored securely in the `backend/.env` file and accessed via `$_ENV`.
-*   **Database Connection:** A PDO connection is established (likely via `backend/config/connect.php`) and injected into Model/Controller instances.
+*   **Database Connection:** A PDO connection is established (via `backend/config/connect.php`) and injected into Model/Controller instances.
 *   **Authentication & Sessions:**
     *   Login validates credentials against the database (`UserModel`) and stores user info in the PHP `$_SESSION`.
     *   A session cookie is sent to the browser to maintain the logged-in state.
