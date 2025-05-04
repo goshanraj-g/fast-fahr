@@ -60,6 +60,58 @@ Check out a brief video walkthrough of FastFahr's features and user interface:
     *   [Composer](https://getcomposer.org/) - Backend dependency management
     *   [Git](https://git-scm.com/downloads) - Version control
 
+## ⚙️ Technical Deep Dive
+
+This section explains the technical architecture and workflow of the FastFahr application.
+
+**1. Overall Architecture:**
+
+*   **Client-Server Model:** FastFahr operates as a Single Page Application (SPA) using React for the frontend (client) and a separate PHP application for the backend API (server).
+*   **API Communication:** The React frontend communicates with the PHP backend via asynchronous `fetch` requests to specific API endpoints. Data is primarily exchanged in JSON format.
+*   **Backend Structure:** The PHP backend follows an MVC-like pattern:
+    *   **Models (`/backend/app/models`):** Responsible for all database interactions using PDO (PHP Data Objects) for secure and consistent data access (leveraging prepared statements implicitly). Each model typically corresponds to a database table (Users, Posts, Messages, etc.).
+    *   **Controllers (`/backend/app/controllers`):** Contain the core application/business logic. They handle incoming requests (routed from API scripts), validate data, interact with Models to fetch or manipulate data, and format the response using methods from the `BaseController`.
+    *   **(Current) API Entry Points (`/backend/apis`):** Individual `.php` scripts currently serve as the entry points for specific API routes (e.g., `login.php`, `get_listings.php`). These scripts instantiate the relevant Controller and call the appropriate method. *(See Future Improvements regarding Front Controller)*.
+    *   **Views:** The "View" layer is effectively handled entirely by the React frontend, which renders the UI based on data received from the API.
+
+**2. Frontend (React):**
+
+*   **UI Library:** Built with React functional components and Hooks (`useState`, `useEffect`, `useCallback`, `useContext`, `useRef`).
+*   **Routing:** `react-router-dom` manages client-side navigation between different pages (`/login`, `/buying`, `/selling`, `/messages`, etc.) without full page reloads.
+*   **State Management:**
+    *   **Local State:** `useState` manages component-level state (form inputs, modal visibility, loading indicators).
+    *   **Global State (Auth):** React Context API (`AuthContext` via `useAuth.js`) holds the global authentication status (`currentUser`, `isLoading`) across the application.
+*   **API Interaction:** Uses the browser's `fetch` API to send requests to the PHP backend. Handles responses (JSON parsing) and updates component state accordingly. `FormData` is used for requests involving file uploads (listing creation, profile picture update).
+*   **Static Assets:** Base HTML (`public/index.html`), favicon, and potentially static images (like default avatars) are served from the `frontend/public` directory (or handled by the build process). Uploaded user content is served from the separate `/uploads` directory managed by the web server.
+
+**3. Backend (PHP):**
+
+*   **Request Handling:** Apache (via XAMPP) routes requests matching `/fastfahr/backend/apis/...` to the corresponding PHP scripts.
+*   **Dependencies:** Composer manages backend libraries like PHPMailer (for sending emails) and phpdotenv (for environment variables).
+*   **Configuration:** Database credentials, mailer settings, CORS origin, etc., are stored securely in the `backend/.env` file and accessed via `$_ENV`.
+*   **Database Connection:** A PDO connection is established (likely via `backend/config/connect.php`) and injected into Model/Controller instances.
+*   **Authentication & Sessions:**
+    *   Login validates credentials against the database (`UserModel`) and stores user info in the PHP `$_SESSION`.
+    *   A session cookie is sent to the browser to maintain the logged-in state.
+    *   Backend API scripts/controllers check for a valid session (`auth_check.php` or methods in `BaseController`) to protect authenticated routes.
+    *   Password reset uses secure token generation (`PasswordResetModel`), email verification (PHPMailer via Gmail SMTP), and token validation.
+*   **File Uploads:**
+    *   PHP handles `multipart/form-data` requests.
+    *   Controllers validate file type, size, and errors (`$_FILES` superglobal).
+    *   Files are moved from the temporary directory to a persistent `uploads/` subdirectory (`profile_pictures` or general listing images) using `move_uploaded_file`.
+    *   Relative web paths (e.g., `/uploads/profile_pictures/xyz.jpg`) are stored in the database.
+    *   Existing files are deleted (`unlink`) when profile pictures or listing images are replaced/deleted.
+
+**4. Key Feature Flows:**
+
+*   **Listing Creation:** React Form (`CreateListingForm`) collects data -> `FormData` sent via `fetch` -> `save_listings.php` -> `ListingsController::create()` -> Validates -> `ListingModel::createListing()` (inserts post, gets ID) -> `handleImageUploads()` (saves files to `/uploads`, returns relative paths) -> `ListingModel::addListingImage()` (saves paths to `post_images`) -> `ListingModel::getListingById()` (fetches complete new data) -> JSON response with new listing data -> React updates `myListings` state.
+*   **Messaging (Polling):** `MessagesPage` `useEffect` sets up `setInterval` -> Every X seconds, `fetch` calls `get_conversations.php` AND `get_messages.php` (if chat selected) -> Backend Controllers/Models query DB -> JSON response -> React updates `conversations` and `messages` state, triggering re-renders. Sending uses `fetch` POST to `send_message.php`.
+*   **Image Serving:** React components render `<img>` tags with `src` attribute constructed using `REACT_APP_STATIC_BASE` + relative path from database (e.g., `http://localhost/fastfahr/uploads/profile_pictures/xyz.jpg`). Apache serves files directly from the `htdocs/fastfahr/uploads` directory based on this URL.
+
+**5. Data Flow Summary:**
+
+User Interaction (React) -> `fetch` Request -> Apache -> PHP API Script (`apis/`) -> Controller (`app/controllers`) -> Model (`app/models`) -> Database (MySQL) -> Model -> Controller -> JSON Response -> `fetch` Response Handling (React) -> State Update (React) -> UI Re-render (React).
+
 ## 🚀 Getting Started / How To Run
 
 Follow these instructions to get a local copy up and running for development or testing.
@@ -127,19 +179,6 @@ Follow these instructions to get a local copy up and running for development or 
 *   **📚 Documentation:** Add more comprehensive inline code comments (PHPDoc/JSDoc) and potentially API documentation (e.g., using Swagger/OpenAPI).
 *   **🐛 Bug Fixes:** Address any remaining known bugs or edge cases identified during testing.
 *   **📱 UI/UX Improvements:** Enhance overall UI consistency across pages, improve layout and usability on mobile devices, and refine user workflows.
-
-## 💡 What We Learned
-
-*   Integrating a React Single Page Application (SPA) with a traditional PHP backend API structure.
-*   Managing application state effectively in React using Hooks (`useState`, `useEffect`, `useCallback`) and Context API (`useAuth`).
-*   Handling file uploads securely in PHP and associating them with database records.
-*   Debugging common web development issues involving CORS, path resolution (relative vs. absolute), asynchronous operations, and state synchronization between client and server.
-*   The importance of error handling for a smooth user experience at all times
-*   Implementing core web application features: CRUD for listings, user authentication 
-(registration, login, password reset), user-to-user messaging (via polling), and bookmarking functionality.
-*   The critical importance of database indexing for improving query performance.
-*   Understanding the trade-offs and implementation differences between polling and WebSockets for real-time features.
-*   Setting up and configuring a local development environment using XAMPP for a full-stack application.
 
 ## 📄 License
 
