@@ -4,10 +4,7 @@ import ViewModal from "../components/buyingComponents/ViewModal";
 import "../components/css/buyingCSS/buyingpage.css";
 import filterListings from "../components/filterListingsComponent/filterListings";
 import FilterModal from "../components/FilterModal";
-import Footer from "../components/Footer";
-import Header from "../components/Header";
 import ListingCard from "../components/ListingCard";
-import NavBar from "../components/Navbar";
 import { useAuth } from "../hooks/useAuth";
 import { fetchBookmarks, toggleBookmark } from "../hooks/useBookmarks";
 

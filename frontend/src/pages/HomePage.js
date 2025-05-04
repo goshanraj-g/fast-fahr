@@ -1,9 +1,6 @@
 import React from "react";
-import Header from "../components/Header.js";
-import NavBar from "../components/Navbar.js";
 import Card from "../components/Card.js";
 import NewsArticleCard from "../components/NewsArticleCard.js";
-import Footer from "../components/Footer.js";
 import sampleNewsData from "../components/data/sampleNewsData.js";
 import "../components/css/homeCSS/homepage.css";
 

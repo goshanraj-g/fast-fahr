@@ -3,9 +3,6 @@ import { useNavigate } from "react-router-dom";
 import ListingCard from "../components/ListingCard";
 import ViewModal from "../components/buyingComponents/ViewModal";
 import "../components/css/buyingCSS/buyingpage.css";
-import Footer from "../components/Footer";
-import Header from "../components/Header";
-import NavBar from "../components/Navbar";
 import { useAuth } from "../hooks/useAuth";
 import { fetchBookmarks, toggleBookmark } from "../hooks/useBookmarks";
 

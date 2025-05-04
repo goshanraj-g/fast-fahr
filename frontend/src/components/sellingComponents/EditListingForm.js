@@ -3,13 +3,13 @@ import { getModelsForMake, getYearOptions } from "../data/selling.js";
 import "../css/sellingCSS/createlistingform.css";
 
 /**
- * Renders a form for editing existing car listings.
- * @param {object} props - Component properties.
- * @param {object} props.listingToEdit - The listing object containing initial data.
- * @param {function} props.onSubmitSuccess - Callback on successful update (receives updated listing data).
- * @param {function} props.onClose - Callback to close the modal.
- * @returns {JSX.Element} The EditListingForm component.
- */
+* Renders a form for editing existing car listings.
+* @param {object} props - Component properties.
+* @param {object} props.listingToEdit - The listing object containing initial data.
+* @param {function} props.onSubmitSuccess - Callback on successful update (receives updated listing data).
+* @param {function} props.onClose - Callback to close the modal.
+* @returns {JSX.Element} The EditListingForm component.
+*/
 function EditListingForm({ listingToEdit, onSubmitSuccess, onClose }) {
   const [make, setMake] = useState("");
   const [model, setModel] = useState("");

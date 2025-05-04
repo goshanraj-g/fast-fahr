@@ -124,7 +124,7 @@ function ViewModal({
               <div className="spec-item">
                 <i className="fas fa-tachometer-alt"></i>
                 <span className="spec-label">Year • Kilometers:</span>
-                <span className="spec-value">{year} • {specs.Kilometers}</span>
+                <span className="spec-value">{year} • {specs.Kilometers} km</span>
               </div>
             )}
             {specs.Transmission && (

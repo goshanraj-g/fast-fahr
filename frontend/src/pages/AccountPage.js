@@ -1,8 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, Navigate } from "react-router-dom";
-import Header from "../components/Header.js";
-import NavBar from "../components/Navbar.js";
-import Footer from "../components/Footer.js";
 import "../components/css/homeCSS/homepage.css";
 import "../components/css/accountCSS/manageAccount.css";
 import { useAuth } from "../hooks/useAuth.js";

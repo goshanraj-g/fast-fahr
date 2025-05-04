@@ -1,9 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Footer from "../components/Footer";
-import Header from "../components/Header";
 import ListingCard from "../components/ListingCard.js";
-import NavBar from "../components/Navbar";
 import ViewModal from "../components/buyingComponents/ViewModal";
 import "../components/css/sellingCSS/sellingpage.css";
 import CreateListingForm from "../components/sellingComponents/CreateListingForm.js";
