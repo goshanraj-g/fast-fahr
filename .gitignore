@@ -1,0 +1,36 @@
+# === NODE ===
+**/node_modules/
+**/package-lock.json
+/frontend/node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# === FRONTEND ===
+frontend/build/
+/build/
+frontend/.env*
+frontend/.DS_Store
+
+vendor/
+# === BACKEND ===
+backend/vendor/
+backend/.env*
+backend/.DS_Store
+
+
+# === TEST COVERAGE ===
+/coverage/
+
+# === SYSTEM FILES ===
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# === IDEs / EDITORS ===
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+*.swp

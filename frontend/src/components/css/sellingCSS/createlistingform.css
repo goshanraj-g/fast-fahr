@@ -1,0 +1,298 @@
+.create-listing-form {
+  padding: 1.5rem 2rem 2rem 2rem;
+  background-color: #ffffff;
+  border-radius: 8px;
+  max-height: 85vh;
+  overflow-y: auto; 
+  font-family: "Poppins", sans-serif;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.8rem;
+  border-bottom: 1px solid #eee;
+}
+
+.photo-warning {
+  color: #d9534f;
+  font-size: 0.9rem;
+  margin-top: 0.3rem;
+}
+
+.modal-header h2 {
+  margin: 0;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #111;
+}
+
+.create-listing-form .close-modal-btn {
+  background: var(--primary-red);
+  border: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: white;
+  transition: background-color 0.2s;
+}
+
+.create-listing-form .close-modal-btn:hover {
+  background-color: #a00000;
+  color: white;
+}
+
+
+.create-listing-form .form-group {
+  margin-bottom: 1rem;
+}
+
+.create-listing-form label {
+  display: block;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 0.4rem;
+  font-size: 0.9rem;
+}
+
+.create-listing-form input[type="text"],
+.create-listing-form input[type="number"],
+.create-listing-form select,
+.create-listing-form textarea {
+  width: 100%;
+  padding: 0.65rem 0.9rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  font-family: "Poppins", sans-serif;
+  background-color: #fdfdfd;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease;
+}
+
+.create-listing-form input:focus,
+.create-listing-form select:focus,
+.create-listing-form textarea:focus {
+  outline: none;
+  border-color: #ffa200;
+  background-color: #fff;
+}
+
+.create-listing-form textarea {
+  resize: vertical;
+  min-height: 70px;
+}
+
+.create-listing-form select[disabled] {
+  background-color: #e9ecef;
+  cursor: not-allowed;
+}
+
+.create-listing-form input[type="file"] {
+  padding: 0.5rem;
+  border: 1px dashed #ccc;
+  background-color: #f9f9f9;
+}
+
+.create-listing-form small {
+  display: block;
+  margin-top: 0.3rem;
+  font-size: 0.8rem;
+  color: #666;
+}
+
+.form-row {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.form-row .form-group {
+  flex: 1; 
+  margin-bottom: 0;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end; 
+  gap: 0.8rem;
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid #eee;
+}
+
+.form-actions button {
+  padding: 0.7rem 1.5rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+  font-family: "Poppins", sans-serif;
+}
+
+.cancel-btn {
+  background-color: #f0f0f0;
+  color: #333;
+  border: 1px solid #ccc;
+}
+
+.cancel-btn:hover {
+  background-color: #e0e0e0;
+}
+
+.publish-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: #424242;
+  color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.publish-btn:hover {
+  background-color: #000000;
+  transition: all 0.3s ease;  
+}
+
+.publish-btn i {
+  font-size: 0.9rem;
+}
+
+.photo-preview-area {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border: 1px solid #eee;
+  border-radius: 6px;
+  background-color: #f9f9f9;
+}
+
+.photo-preview-area p {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  color: #333;
+  font-size: 0.95rem;
+}
+
+.previews-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+.preview-item {
+  position: relative;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  overflow: hidden;
+  width: 90px;
+  height: 68px;
+  background-color: #e0e0e0;
+}
+
+.preview-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.preview-item.main-photo {
+  border: 2.5px solid #ffa200;
+  box-shadow: 0 0 5px rgba(255, 152, 0, 0.5);
+}
+
+.set-main-photo-btn {
+  position: absolute;
+  bottom: 3px;
+  right: 3px;
+  font-size: 0.65rem;
+  padding: 2px 5px;
+  background-color: rgba(0, 0, 0, 0.65);
+  color: white;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  line-height: 1;
+}
+.set-main-photo-btn:not(:disabled):hover {
+  background-color: rgba(0, 0, 0, 0.85);
+}
+.set-main-photo-btn:disabled {
+  background-color: #ffa200;
+  color: black;
+  font-weight: bold;
+  cursor: default;
+}
+
+.create-listing-form label[for="photos"] {
+  display: block;
+  margin-bottom: 0.4rem;
+}
+
+.star {
+  color: #cc0000;
+  margin-left: 3px;
+}
+
+.remove-photo-btn {
+  background-color: rgba(220, 53, 69, 0.8) !important;
+  color: white !important;
+  font-weight: bold;
+  order: -1;
+}
+.remove-photo-btn:hover:not(:disabled) {
+   background-color: rgba(200, 35, 51, 0.9) !important;
+}
+
+.preview-item-actions {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 5px;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+  box-sizing: border-box;
+}
+
+.preview-item:hover .preview-item-actions {
+  opacity: 1;
+}
+
+.preview-item-actions button {
+  background-color: rgba(255, 255, 255, 0.9);
+  border: none;
+  color: #333;
+  padding: 3px 6px;
+  font-size: 0.8em;
+  border-radius: 3px;
+  cursor: pointer;
+  line-height: 1.3;
+  transition: background-color 0.2s ease;
+  white-space: nowrap;
+}
+
+.preview-item-actions button:hover:not(:disabled) {
+   background-color: rgba(255, 255, 255, 1);
+}
+
+.preview-item-actions button:disabled {
+   cursor: not-allowed;
+   opacity: 0.7;
+}
