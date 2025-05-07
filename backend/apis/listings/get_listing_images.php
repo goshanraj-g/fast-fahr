@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/../../vendor/autoload.php';
+require_once __DIR__ . '/../../config/LoadEnv.php';
 require_once __DIR__ . '/../../config/connect.php';
 use App\controllers\ListingsController;
 

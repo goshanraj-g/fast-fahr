@@ -1,4 +1,6 @@
 <?php
+require_once __DIR__ . '/../../bootstrap.php';
+
 require_once __DIR__ . '/../../vendor/autoload.php';
 require_once __DIR__ . '/../../config/connect.php';
 require_once __DIR__ . '/../auth/auth_check.php';

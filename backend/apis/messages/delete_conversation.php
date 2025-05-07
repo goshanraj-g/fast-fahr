@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/../../vendor/autoload.php';
+require_once __DIR__ . '/../../config/LoadEnv.php';
 require_once __DIR__ . '/../../config/connect.php';
 require_once __DIR__ . '/../auth/auth_check.php';
 use App\controllers\MessagesController;
